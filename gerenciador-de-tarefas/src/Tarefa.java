@@ -6,12 +6,14 @@ public class Tarefa {
     private String titulo;
     private String descricao;
     private String dataVencimento;
+    private String prioridade;
 
     public Tarefa(String usuario, String titulo, String descricao, String dataVencimento, String prioridade) {
         this.usuario = usuario;
         this.titulo = titulo;
         this.descricao = descricao;
         this.dataVencimento = dataVencimento;
+        this.prioridade = prioridade;
     }
 
     public String getUsuario() {
@@ -28,6 +30,10 @@ public class Tarefa {
 
     public Object getDataVencimento() {
         return this.dataVencimento;
+    }
+
+    public Object getPrioridade() {
+        return this.prioridade;
     }
 
 }
