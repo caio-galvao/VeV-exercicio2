@@ -28,5 +28,16 @@ public class GerenciadorTarefasTest {
         Tarefa tarefa = GerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
         Assert.assertEquals(tarefa.getUsuario(), usuario);
     }
+
+    @Test
+    public void testAtributoTitulo() {
+        String usuario = "usuario1";
+        String titulo = "Tarefa 1";
+        String descricao = "Tarefa de teste.";
+        String dataVencimento = "01/03/2024";
+        String prioridade = "média";
+        Tarefa tarefa = GerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
+        Assert.assertEquals(tarefa.getTitulo(), titulo);
+    }
 }
 
