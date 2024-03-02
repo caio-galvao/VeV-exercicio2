@@ -2,7 +2,7 @@ package test;
 import org.junit.*;
 
 import src.Tarefa;
-import src.gerenciadorTarefas;
+import src.GerenciadorTarefas;
 
 public class GerenciadorTarefasTest {
     
@@ -14,8 +14,19 @@ public class GerenciadorTarefasTest {
         String descricao = "Tarefa de teste.";
         String dataVencimento = "01/03/2024";
         String prioridade = "média";
-        Tarefa tarefa = gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
+        Tarefa tarefa = GerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
         Assert.assertNotNull(tarefa);
+    }
+
+    @Test
+    public void testAtributoUsuario() {
+        String usuario = "usuario1";
+        String titulo = "Tarefa 1";
+        String descricao = "Tarefa de teste.";
+        String dataVencimento = "01/03/2024";
+        String prioridade = "média";
+        Tarefa tarefa = GerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
+        Assert.assertEquals(tarefa.getUsuario(), usuario);
     }
 }
 
