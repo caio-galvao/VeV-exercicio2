@@ -167,4 +167,10 @@ public class GerenciadorTarefasTest {
         Tarefa tarefaExcluida = gerenciadorTarefas.getTarefa(usuario, titulo);
         Assert.assertNull(tarefaExcluida);
     }
+
+    @Test
+    public void testExclusaoTarefaNaoCriada() {
+        Boolean status = gerenciadorTarefas.excluirTarefa("usuario1", "Tarefa 1");
+        Assert.assertFalse(status);
+    }
 }

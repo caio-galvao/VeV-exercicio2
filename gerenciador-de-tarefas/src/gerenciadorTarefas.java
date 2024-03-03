@@ -47,7 +47,11 @@ public class GerenciadorTarefas {
     }
 
     public Boolean excluirTarefa(String usuario, String titulo) {
-        this.tarefas.remove(titulo);
-        return true;
+        Tarefa tarefaRemovida = this.tarefas.remove(titulo);
+        if (tarefaRemovida == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
