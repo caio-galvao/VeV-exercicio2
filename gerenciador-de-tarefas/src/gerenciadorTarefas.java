@@ -27,4 +27,10 @@ public class GerenciadorTarefas {
         tarefa.setDescricao(novaDescricao);
         return tarefa;
     }
+
+    public Tarefa atualizarDataVencimento(String usuario, String titulo, String novaDataVencimento) {
+        Tarefa tarefa = tarefas.get(titulo);
+        tarefa.setDataVencimento(novaDataVencimento);
+        return tarefa;
+    }
 }

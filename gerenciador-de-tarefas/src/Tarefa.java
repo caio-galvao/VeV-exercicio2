@@ -44,4 +44,8 @@ public class Tarefa {
         this.descricao = novaDescricao;
     }
 
+    public void setDataVencimento(String novaDataVencimento) {
+        this.dataVencimento = novaDataVencimento;
+    }
+
 }
