@@ -171,6 +171,12 @@ public class GerenciadorTarefasTest {
         Assert.assertEquals(tarefa.getPrioridade(), novaPrioridade);
     }
 
+    @Test
+    public void testAtualizacaoPrioridadeTarefaNaoCriada() {
+        Boolean status = gerenciadorTarefas.atualizarPrioridade("usuario1", "Tarefa 1", "alta");
+        Assert.assertFalse(status);
+    }
+
     //testes exclusão tarefas
     @Test
     public void testExclusao() {

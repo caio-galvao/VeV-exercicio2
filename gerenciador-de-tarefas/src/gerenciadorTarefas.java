@@ -57,6 +57,11 @@ public class GerenciadorTarefas {
 
     public Boolean atualizarPrioridade(String usuario, String titulo, String novaPrioridade) {
         Tarefa tarefa = tarefas.get(titulo);
+
+        if (tarefa == null) {
+            return false;
+        }
+
         tarefa.setPrioridade(novaPrioridade);
         return true;
     }
