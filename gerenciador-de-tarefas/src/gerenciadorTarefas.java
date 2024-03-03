@@ -35,6 +35,11 @@ public class GerenciadorTarefas {
 
     public Boolean atualizarDescricaoTarefa(String usuario, String titulo, String novaDescricao) {
         Tarefa tarefa = tarefas.get(titulo);
+        
+        if (tarefa == null) {
+            return false;
+        }
+        
         tarefa.setDescricao(novaDescricao);
         return true;
     }
