@@ -28,12 +28,16 @@ public class Tarefa {
         return this.descricao;
     }
 
-    public Object getDataVencimento() {
+    public String getDataVencimento() {
         return this.dataVencimento;
     }
 
-    public Object getPrioridade() {
+    public String getPrioridade() {
         return this.prioridade;
+    }
+
+    public void setTitulo(String novoTitulo) {
+        this.titulo = novoTitulo;
     }
 
 }
