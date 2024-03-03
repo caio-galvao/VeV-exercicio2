@@ -22,6 +22,11 @@ public class GerenciadorTarefas {
 
     public Boolean atualizarTituloTarefa(String usuario, String titulo, String novoTitulo) {
         Tarefa tarefa = tarefas.get(titulo);
+        
+        if (tarefa == null) {
+            return false;
+        }
+
         tarefa.setTitulo(novoTitulo);
         tarefas.remove(titulo);
         tarefas.put(novoTitulo, tarefa);

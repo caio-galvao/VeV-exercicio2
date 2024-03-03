@@ -105,6 +105,12 @@ public class GerenciadorTarefasTest {
     }
 
     @Test
+    public void testAtualizacaoTituloTarefaNaoCriada() {        
+        Boolean status = gerenciadorTarefas.atualizarTituloTarefa("usuario1", "Tarefa 1", "1");
+        Assert.assertFalse(status);
+    }
+
+    @Test
     public void testAtualizacaoDescricao() {
         String usuario = "usuario1";
         String titulo = "Tarefa 1";
