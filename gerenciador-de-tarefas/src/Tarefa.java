@@ -40,4 +40,8 @@ public class Tarefa {
         this.titulo = novoTitulo;
     }
 
+    public void setDescricao(String novaDescricao) {
+        this.descricao = novaDescricao;
+    }
+
 }

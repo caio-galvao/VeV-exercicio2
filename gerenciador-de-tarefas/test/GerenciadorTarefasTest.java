@@ -84,9 +84,24 @@ public class GerenciadorTarefasTest {
         String dataVencimento = "01/03/2024";
         String prioridade = "média";
         Tarefa tarefa = gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
+        
         String novoTitulo = "1";
         Tarefa tarefaAtualizada = gerenciadorTarefas.atualizarTituloTarefa(usuario, titulo, novoTitulo);
         Assert.assertEquals(tarefaAtualizada.getTitulo(), novoTitulo);
+    }
+
+    @Test
+    public void testAtualizacaoDescricao() {
+        String usuario = "usuario1";
+        String titulo = "Tarefa 1";
+        String descricao = "Tarefa de teste.";
+        String dataVencimento = "01/03/2024";
+        String prioridade = "média";
+        Tarefa tarefa = gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
+        
+        String novaDescricao = "Testando";
+        Tarefa tarefaAtualizada = gerenciadorTarefas.atualizarDescricaoTarefa(usuario, titulo, novaDescricao);
+        Assert.assertEquals(tarefaAtualizada.getDescricao(), novaDescricao);
     }
 }
 
