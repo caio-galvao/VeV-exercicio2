@@ -150,6 +150,12 @@ public class GerenciadorTarefasTest {
     }
 
     @Test
+    public void testAtualizacaoDataVencimentoTarefaNaoCriada() {
+        Boolean status = gerenciadorTarefas.atualizarDataVencimento( "usuario1", "Tarefa 1", "03/03/2024");
+        Assert.assertFalse(status);
+    }
+
+    @Test
     public void testAtualizacaoPrioridade() {
         String usuario = "usuario1";
         String titulo = "Tarefa 1";

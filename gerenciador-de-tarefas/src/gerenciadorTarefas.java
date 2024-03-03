@@ -46,6 +46,11 @@ public class GerenciadorTarefas {
 
     public Boolean atualizarDataVencimento(String usuario, String titulo, String novaDataVencimento) {
         Tarefa tarefa = tarefas.get(titulo);
+
+        if (tarefa == null) {
+            return false;
+        }
+
         tarefa.setDataVencimento(novaDataVencimento);
         return true;
     }
