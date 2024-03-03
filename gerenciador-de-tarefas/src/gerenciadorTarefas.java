@@ -10,33 +10,44 @@ public class GerenciadorTarefas {
         this.tarefas = new HashMap<String, Tarefa>();
     }
 
-    public Tarefa criarTarefa(String usuario, String titulo, String descricao, String dataVencimento, String prioridade) {
+    public Tarefa getTarefa(String usuario, String titulo) {
+        return this.tarefas.get(titulo);
+    }
+
+    public Boolean criarTarefa(String usuario, String titulo, String descricao, String dataVencimento, String prioridade) {
        Tarefa tarefa = new Tarefa(usuario, titulo, descricao, dataVencimento, prioridade);
        this.tarefas.put(titulo, tarefa);
-       return tarefa;
+       return true;
     }
 
-    public Tarefa atualizarTituloTarefa(String usuario, String titulo, String novoTitulo) {
+    public Boolean atualizarTituloTarefa(String usuario, String titulo, String novoTitulo) {
         Tarefa tarefa = tarefas.get(titulo);
         tarefa.setTitulo(novoTitulo);
-        return tarefa;
+        tarefas.remove(titulo);
+        tarefas.put(novoTitulo, tarefa);
+        return true;
     }
 
-    public Tarefa atualizarDescricaoTarefa(String usuario, String titulo, String novaDescricao) {
+    public Boolean atualizarDescricaoTarefa(String usuario, String titulo, String novaDescricao) {
         Tarefa tarefa = tarefas.get(titulo);
         tarefa.setDescricao(novaDescricao);
-        return tarefa;
+        return true;
     }
 
-    public Tarefa atualizarDataVencimento(String usuario, String titulo, String novaDataVencimento) {
+    public Boolean atualizarDataVencimento(String usuario, String titulo, String novaDataVencimento) {
         Tarefa tarefa = tarefas.get(titulo);
         tarefa.setDataVencimento(novaDataVencimento);
-        return tarefa;
+        return true;
     }
 
-    public Tarefa atualizarPrioridade(String usuario, String titulo, String novaPrioridade) {
+    public Boolean atualizarPrioridade(String usuario, String titulo, String novaPrioridade) {
         Tarefa tarefa = tarefas.get(titulo);
         tarefa.setPrioridade(novaPrioridade);
-        return tarefa;
+        return true;
+    }
+
+    public Boolean excluirTarefa(String usuario, String titulo) {
+        this.tarefas.remove(titulo);
+        return true;
     }
 }
