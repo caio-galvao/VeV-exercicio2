@@ -33,4 +33,10 @@ public class GerenciadorTarefas {
         tarefa.setDataVencimento(novaDataVencimento);
         return tarefa;
     }
+
+    public Tarefa atualizarPrioridade(String usuario, String titulo, String novaPrioridade) {
+        Tarefa tarefa = tarefas.get(titulo);
+        tarefa.setPrioridade(novaPrioridade);
+        return tarefa;
+    }
 }

@@ -48,4 +48,8 @@ public class Tarefa {
         this.dataVencimento = novaDataVencimento;
     }
 
+    public void setPrioridade(String novaPrioridade) {
+        this.prioridade = novaPrioridade;
+    }
+
 }

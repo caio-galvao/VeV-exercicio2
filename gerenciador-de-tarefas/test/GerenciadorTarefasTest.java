@@ -117,4 +117,18 @@ public class GerenciadorTarefasTest {
         Tarefa tarefaAtualizada = gerenciadorTarefas.atualizarDataVencimento(usuario, titulo, novaDataVencimento);
         Assert.assertEquals(tarefaAtualizada.getDataVencimento(), novaDataVencimento);
     }
+
+    @Test
+    public void testAtualizacaoPrioridade() {
+        String usuario = "usuario1";
+        String titulo = "Tarefa 1";
+        String descricao = "Tarefa de teste.";
+        String dataVencimento = "01/03/2024";
+        String prioridade = "média";
+        Tarefa tarefa = gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
+        
+        String novaPrioridade = "alta";
+        Tarefa tarefaAtualizada = gerenciadorTarefas.atualizarPrioridade(usuario, titulo, novaPrioridade);
+        Assert.assertEquals(tarefaAtualizada.getPrioridade(), novaPrioridade);
+    }
 }
