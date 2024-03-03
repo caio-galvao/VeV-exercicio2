@@ -15,9 +15,13 @@ public class GerenciadorTarefas {
     }
 
     public Boolean criarTarefa(String usuario, String titulo, String descricao, String dataVencimento, String prioridade) {
-       Tarefa tarefa = new Tarefa(usuario, titulo, descricao, dataVencimento, prioridade);
-       this.tarefas.put(titulo, tarefa);
-       return true;
+        if (tarefas.containsKey(titulo)) {
+            return false;
+        }
+        
+        Tarefa tarefa = new Tarefa(usuario, titulo, descricao, dataVencimento, prioridade);
+        this.tarefas.put(titulo, tarefa);
+        return true;
     }
 
     public Boolean atualizarTituloTarefa(String usuario, String titulo, String novoTitulo) {

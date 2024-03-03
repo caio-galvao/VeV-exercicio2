@@ -23,6 +23,24 @@ public class GerenciadorTarefasTest {
     }
 
     @Test
+    public void testCriarTarefaJaCriada() {
+        String usuario = "usuario1";
+        String titulo = "Tarefa 1";
+        String descricao = "Tarefa de teste.";
+        String dataVencimento = "01/03/2024";
+        String prioridade = "média";
+        gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
+        
+        String novoUsuario = "usuario1";
+        String novoTitulo = "Tarefa 1";
+        String novaDescricao = "testando...";
+        String novaDataVencimento = "10/03/2024";
+        String novaPrioridade = "alta";
+        Boolean status = gerenciadorTarefas.criarTarefa(novoUsuario, novoTitulo, novaDescricao, novaDataVencimento, novaPrioridade);
+        Assert.assertFalse(status);
+    }
+
+    @Test
     public void testAtributoUsuario() {
         String usuario = "usuario1";
         String titulo = "Tarefa 1";
