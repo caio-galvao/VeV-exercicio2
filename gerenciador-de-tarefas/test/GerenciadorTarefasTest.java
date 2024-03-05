@@ -23,6 +23,26 @@ public class GerenciadorTarefasTest {
     }
 
     @Test
+    public void testCriarTarefa2Usuarios() {
+        String usuario1 = "usuario1";
+        String titulo1 = "Tarefa 1";
+        String descricao1 = "Tarefa de teste.";
+        String dataVencimento1 = "01/03/2024";
+        String prioridade1 = "média";
+        gerenciadorTarefas.criarTarefa(usuario1, titulo1, descricao1, dataVencimento1, prioridade1);
+
+        String usuario2 = "usuario2";
+        String titulo2 = "Tarefa 1";
+        String descricao2 = ".";
+        String dataVencimento2 = "05/03/2024";
+        String prioridade2 = "alta";
+        Boolean status2 = gerenciadorTarefas.criarTarefa(usuario2, titulo2, descricao2, dataVencimento2, prioridade2);
+        Assert.assertTrue(status2);
+        Tarefa tarefa2 = gerenciadorTarefas.getTarefa(usuario2, titulo2);
+        Assert.assertNotNull(tarefa2);
+    }
+
+    @Test
     public void testCriarTarefaJaCriada() {
         String usuario = "usuario1";
         String titulo = "Tarefa 1";

@@ -1,45 +1,60 @@
 package src;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class GerenciadorTarefas {
 
-    private HashMap<String, Tarefa> tarefas;
+    private HashMap<String, List<Tarefa>> tarefas;
 
     public GerenciadorTarefas() {
-        this.tarefas = new HashMap<String, Tarefa>();
+        this.tarefas = new HashMap<String, List<Tarefa>>();
     }
 
     public Tarefa getTarefa(String usuario, String titulo) {
-        return this.tarefas.get(titulo);
+        List<Tarefa> tarefasUsuario = this.tarefas.get(usuario);
+
+        if (tarefasUsuario == null) {
+            return null;
+        }
+        
+        for (Tarefa tarefa : tarefasUsuario) {
+            if (tarefa.getTitulo().equals(titulo)) {
+                return tarefa;
+            }
+        }
+        return null;
     }
 
     public Boolean criarTarefa(String usuario, String titulo, String descricao, String dataVencimento, String prioridade) {
-        if (tarefas.containsKey(titulo)) {
+        if (getTarefa(usuario, titulo) != null) {
             return false;
         }
-        
+
+        List<Tarefa> tarefasUsuario = this.tarefas.get(usuario);
+        if (tarefasUsuario == null) {
+            tarefasUsuario = new ArrayList<Tarefa>();
+            tarefas.put(usuario, tarefasUsuario);
+        }
+
         Tarefa tarefa = new Tarefa(usuario, titulo, descricao, dataVencimento, prioridade);
-        this.tarefas.put(titulo, tarefa);
+        tarefasUsuario.add(tarefa);
         return true;
     }
 
     public Boolean atualizarTituloTarefa(String usuario, String titulo, String novoTitulo) {
-        Tarefa tarefa = tarefas.get(titulo);
-        
+        Tarefa tarefa = getTarefa(usuario, titulo);
         if (tarefa == null) {
             return false;
         }
 
         tarefa.setTitulo(novoTitulo);
-        tarefas.remove(titulo);
-        tarefas.put(novoTitulo, tarefa);
         return true;
     }
 
     public Boolean atualizarDescricaoTarefa(String usuario, String titulo, String novaDescricao) {
-        Tarefa tarefa = tarefas.get(titulo);
-        
+        Tarefa tarefa = getTarefa(usuario, titulo);
         if (tarefa == null) {
             return false;
         }
@@ -49,8 +64,7 @@ public class GerenciadorTarefas {
     }
 
     public Boolean atualizarDataVencimento(String usuario, String titulo, String novaDataVencimento) {
-        Tarefa tarefa = tarefas.get(titulo);
-
+        Tarefa tarefa = getTarefa(usuario, titulo);
         if (tarefa == null) {
             return false;
         }
@@ -60,8 +74,7 @@ public class GerenciadorTarefas {
     }
 
     public Boolean atualizarPrioridade(String usuario, String titulo, String novaPrioridade) {
-        Tarefa tarefa = tarefas.get(titulo);
-
+        Tarefa tarefa = getTarefa(usuario, titulo);
         if (tarefa == null) {
             return false;
         }
@@ -71,11 +84,13 @@ public class GerenciadorTarefas {
     }
 
     public Boolean excluirTarefa(String usuario, String titulo) {
-        Tarefa tarefaRemovida = this.tarefas.remove(titulo);
-        if (tarefaRemovida == null) {
+        Tarefa tarefa = getTarefa(usuario, titulo);
+        if (tarefa == null) {
             return false;
-        } else {
-            return true;
         }
+
+        List<Tarefa> tarefasUsuario = this.tarefas.get(usuario);
+        tarefasUsuario.remove(tarefa);
+        return true;
     }
 }
