@@ -21,4 +21,14 @@ public class GeradorNotaFiscalTest {
         assertEquals(1500.0, notaFiscal.getValor(), 0.001);
         assertEquals(225.0, notaFiscal.getImposto(), 0.001);
     }
+
+    @Test
+    public void testGeracaoNotaFiscalOutrosServicos() {
+        Fatura fatura = new Fatura("Carlos", "Endereço C", "DESENVOLVIMENTO", 2000.0);
+        NotaFiscal notaFiscal = GeradorNotaFiscal.geraNotaFiscal(fatura);
+
+        assertEquals("Cliente C", notaFiscal.getNomeCliente());
+        assertEquals(2000.0, notaFiscal.getValor(), 0.001);
+        assertEquals(120.0, notaFiscal.getImposto(), 0.001);
+    }
 }
