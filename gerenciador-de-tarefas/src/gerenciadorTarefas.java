@@ -88,6 +88,10 @@ public class GerenciadorTarefas {
             return false;
         }
 
+        if (!prioridades.contains(novaPrioridade)) {
+            return false;
+        }
+
         tarefa.setPrioridade(novaPrioridade);
         return true;
     }
