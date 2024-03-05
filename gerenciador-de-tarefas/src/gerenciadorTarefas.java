@@ -7,9 +7,14 @@ import java.util.List;
 public class GerenciadorTarefas {
 
     private HashMap<String, List<Tarefa>> tarefas;
+    private List<String> prioridades;
 
     public GerenciadorTarefas() {
         this.tarefas = new HashMap<String, List<Tarefa>>();
+        this.prioridades = new ArrayList<String>();
+        this.prioridades.add("baixa");
+        this.prioridades.add("média");
+        this.prioridades.add("alta");
     }
 
     public Tarefa getTarefa(String usuario, String titulo) {
@@ -29,6 +34,10 @@ public class GerenciadorTarefas {
 
     public Boolean criarTarefa(String usuario, String titulo, String descricao, String dataVencimento, String prioridade) {
         if (getTarefa(usuario, titulo) != null) {
+            return false;
+        }
+
+        if (!prioridades.contains(prioridade)) {
             return false;
         }
 

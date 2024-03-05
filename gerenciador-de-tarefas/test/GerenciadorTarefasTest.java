@@ -236,4 +236,56 @@ public class GerenciadorTarefasTest {
         Boolean status = gerenciadorTarefas.excluirTarefa("usuario1", "Tarefa 1");
         Assert.assertFalse(status);
     }
+
+    @Test
+    public void testPrioridadeBaixa1() {
+        String usuario = "usuario1";
+        String titulo = "Tarefa 1";
+        String descricao = "Tarefa de teste.";
+        String dataVencimento = "01/03/2024";
+        String prioridade = "baixa";
+        Boolean status = gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
+        Assert.assertTrue(status);
+        Tarefa tarefa = gerenciadorTarefas.getTarefa(usuario, titulo);
+        Assert.assertEquals(tarefa.getPrioridade(), prioridade);
+    }
+
+    @Test
+    public void testPrioridadeMedia1() {
+        String usuario = "usuario1";
+        String titulo = "Tarefa 1";
+        String descricao = "Tarefa de teste.";
+        String dataVencimento = "01/03/2024";
+        String prioridade = "média";
+        Boolean status = gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
+        Assert.assertTrue(status);
+        Tarefa tarefa = gerenciadorTarefas.getTarefa(usuario, titulo);
+        Assert.assertEquals(tarefa.getPrioridade(), prioridade);
+    }
+
+    @Test
+    public void testPrioridadeAlta1() {
+        String usuario = "usuario1";
+        String titulo = "Tarefa 1";
+        String descricao = "Tarefa de teste.";
+        String dataVencimento = "01/03/2024";
+        String prioridade = "alta";
+        Boolean status = gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
+        Assert.assertTrue(status);
+        Tarefa tarefa = gerenciadorTarefas.getTarefa(usuario, titulo);
+        Assert.assertEquals(tarefa.getPrioridade(), prioridade);
+    }
+
+    @Test
+    public void testPrioridadeErrada1() {
+        String usuario = "usuario1";
+        String titulo = "Tarefa 1";
+        String descricao = "Tarefa de teste.";
+        String dataVencimento = "01/03/2024";
+        String prioridade = "muito alta";
+        Boolean status = gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
+        Assert.assertFalse(status);
+        Tarefa tarefa = gerenciadorTarefas.getTarefa(usuario, titulo);
+        Assert.assertNull(tarefa);
+    }
 }
