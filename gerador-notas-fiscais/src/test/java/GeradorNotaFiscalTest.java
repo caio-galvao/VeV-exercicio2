@@ -1,4 +1,6 @@
 import org.junit.Test;
+
+import static javax.management.Query.times;
 import static org.junit.Assert.*;
 
 public class GeradorNotaFiscalTest {
@@ -31,4 +33,5 @@ public class GeradorNotaFiscalTest {
         assertEquals(2000.0, notaFiscal.getValor(), 0.001);
         assertEquals(120.0, notaFiscal.getImposto(), 0.001);
     }
+
 }
