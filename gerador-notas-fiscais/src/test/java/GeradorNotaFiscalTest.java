@@ -25,13 +25,24 @@ public class GeradorNotaFiscalTest {
     }
 
     @Test
-    public void testGeracaoNotaFiscalOutrosServicos() {
+    public void testGeracaoNotaFiscalDesenvolvimento() {
         Fatura fatura = new Fatura("Carlos", "Endereço C", "DESENVOLVIMENTO", 2000.0);
         NotaFiscal notaFiscal = GeradorNotaFiscal.geraNotaFiscal(fatura);
 
-        assertEquals("Cliente C", notaFiscal.getNomeCliente());
+        assertEquals("Carlos", notaFiscal.getNomeCliente());
         assertEquals(2000.0, notaFiscal.getValor(), 0.001);
         assertEquals(120.0, notaFiscal.getImposto(), 0.001);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testGeracaoNotaFiscalComServicoInvalido() {
+        Fatura fatura = new Fatura("Heitor", "Endereço aux", "SERVICO_INVALIDO", 2000.0);
+        GeradorNotaFiscal.geraNotaFiscal(fatura);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGeracaoNotaFiscalComValorNegativo() {
+        Fatura fatura = new Fatura("Victória", "Endereço aux", "DESENVOLVIMENTO", -3000.0);
+        GeradorNotaFiscal.geraNotaFiscal(fatura);
+    }
 }
