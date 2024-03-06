@@ -9,6 +9,8 @@ public class GerenciadorTarefasTest {
     GerenciadorTarefas gerenciadorTarefas = new GerenciadorTarefas();
     
     //testes da criação de tarefas
+    /*
+    * Arthur - revisão 06/03/2024*/
     @Test
     public void testCriarNovaTarefa() {
         String usuario = "usuario1";
@@ -22,6 +24,9 @@ public class GerenciadorTarefasTest {
         Assert.assertNotNull(tarefa);
     }
 
+    /* Acredito que o teste de getTarefa deveria ser realizado comparando a tarefa que está sendo retornada
+    com a tarefa que é esperada e não verificar que o objeto não é nulo.
+     * Arthur - revisão 06/03/2024*/
     @Test
     public void testCriarTarefa2Usuarios() {
         String usuario1 = "usuario1";
@@ -237,6 +242,9 @@ public class GerenciadorTarefasTest {
         Assert.assertFalse(status);
     }
 
+    /* Nomes dos testes seguintes (envolvendo prioridade) estão confusos e estão com números em seus nomes que é uma
+    prática não recomendada.
+     * Arthur - revisão 06/03/2024*/
     @Test
     public void testPrioridadeBaixa1() {
         String usuario = "usuario1";

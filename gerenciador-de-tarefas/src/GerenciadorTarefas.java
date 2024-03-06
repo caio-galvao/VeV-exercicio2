@@ -7,6 +7,10 @@ import java.util.List;
 public class GerenciadorTarefas {
 
     private HashMap<String, List<Tarefa>> tarefas;
+
+    /* Sugestão: usar "enumerator" para prioridades, para evitar o uso de strings diretamente. Isso evita erros
+     de digitação e facilita a manutenção do código.
+     * Arthur - revisão 06/03/2024*/
     private List<String> prioridades;
 
     public GerenciadorTarefas() {
@@ -23,7 +27,7 @@ public class GerenciadorTarefas {
         if (tarefasUsuario == null) {
             return null;
         }
-        
+
         for (Tarefa tarefa : tarefasUsuario) {
             if (tarefa.getTitulo().equals(titulo)) {
                 return tarefa;
@@ -40,6 +44,8 @@ public class GerenciadorTarefas {
         if (!prioridades.contains(prioridade)) {
             return false;
         }
+        /* Sugestão: usar o método computeIfAbsent (método do HashMap) para simplificar a lógica.
+        * Arthur - revisão 06/03/2024*/
 
         List<Tarefa> tarefasUsuario = this.tarefas.get(usuario);
         if (tarefasUsuario == null) {
@@ -67,7 +73,7 @@ public class GerenciadorTarefas {
         if (tarefa == null) {
             return false;
         }
-        
+
         tarefa.setDescricao(novaDescricao);
         return true;
     }
