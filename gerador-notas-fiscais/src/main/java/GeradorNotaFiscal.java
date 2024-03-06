@@ -3,8 +3,6 @@ public class GeradorNotaFiscal {
         if (!ehServicoValido(fatura.getTipoServico())) {
             throw new IllegalArgumentException("Tipo de serviço inválido: " + fatura.getTipoServico());
         }
-
-        // Verificação do valor
         if (fatura.getValor() <= 0) {
             throw new IllegalArgumentException("Valor da fatura deve ser maior que zero.");
         }
