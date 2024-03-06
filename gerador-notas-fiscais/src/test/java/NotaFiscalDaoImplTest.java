@@ -40,4 +40,21 @@ public class NotaFiscalDaoImplTest {
 
         verify(notaFiscalDaoMock, times(1)).enviaParaSAP(notaFiscalMock);
     }
+
+    @Test
+    public void testEnvioNotaFiscalEmail() {
+        Fatura fatura = new Fatura("Lucas", "Endereço do Cliente E", "TREINAMENTO", 4000.0);
+
+        NotaFiscal notaFiscalMock = mock(NotaFiscal.class);
+        when(notaFiscalMock.getNomeCliente()).thenReturn("Lucas");
+        when(notaFiscalMock.getValor()).thenReturn(4000.0);
+        when(notaFiscalMock.getImposto()).thenReturn(600.0);
+
+        GeradorNotaFiscal.geraNotaFiscal(fatura);
+
+        NotaFiscalDao notaFiscalDaoMock = mock(NotaFiscalDao.class);
+        notaFiscalDaoMock.enviaPorEmail(notaFiscalMock);
+
+        verify(notaFiscalDaoMock, times(1)).enviaPorEmail(notaFiscalMock);
+    }
 }
