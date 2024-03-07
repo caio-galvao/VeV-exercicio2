@@ -9,16 +9,17 @@ public class GerenciadorTarefas {
     private HashMap<String, List<Tarefa>> tarefas;
 
     /* Sugestão: usar "enumerator" para prioridades, para evitar o uso de strings diretamente. Isso evita erros
-     de digitação e facilita a manutenção do código.
+     de digitação e facilita a manutenção do código. (Corrigida)
      * Arthur - revisão 06/03/2024*/
-    private List<String> prioridades;
+
+    enum Prioridade {
+        BAIXA,
+        MEDIA,
+        ALTA
+    }
 
     public GerenciadorTarefas() {
         this.tarefas = new HashMap<String, List<Tarefa>>();
-        this.prioridades = new ArrayList<String>();
-        this.prioridades.add("baixa");
-        this.prioridades.add("média");
-        this.prioridades.add("alta");
     }
 
     public Tarefa getTarefa(String usuario, String titulo) {
@@ -41,18 +42,18 @@ public class GerenciadorTarefas {
             return false;
         }
 
-        if (!prioridades.contains(prioridade)) {
+        try  {
+            Prioridade.valueOf(prioridade);
+        } 
+        catch (Exception e) {
             return false;
         }
-        /* Sugestão: usar o método computeIfAbsent (método do HashMap) para simplificar a lógica.
+
+        /* Sugestão: usar o método computeIfAbsent (método do HashMap) para simplificar a lógica. (Corrigido)
         * Arthur - revisão 06/03/2024*/
 
+        tarefas.computeIfAbsent(usuario, k -> new ArrayList<Tarefa>());
         List<Tarefa> tarefasUsuario = this.tarefas.get(usuario);
-        if (tarefasUsuario == null) {
-            tarefasUsuario = new ArrayList<Tarefa>();
-            tarefas.put(usuario, tarefasUsuario);
-        }
-
         Tarefa tarefa = new Tarefa(usuario, titulo, descricao, dataVencimento, prioridade);
         tarefasUsuario.add(tarefa);
         return true;
@@ -94,7 +95,10 @@ public class GerenciadorTarefas {
             return false;
         }
 
-        if (!prioridades.contains(novaPrioridade)) {
+        try  {
+            Prioridade.valueOf(novaPrioridade);
+        } 
+        catch (Exception e) {
             return false;
         }
 
