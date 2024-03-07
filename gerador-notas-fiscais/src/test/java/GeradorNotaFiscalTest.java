@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+/* Import deveria ser removido, já que não está sendo usado 
+* Caio - revisão 06/03/2024 */ 
 import static javax.management.Query.times;
 import static org.junit.Assert.*;
 
@@ -34,6 +36,9 @@ public class GeradorNotaFiscalTest {
         assertEquals(120.0, notaFiscal.getImposto(), 0.001);
     }
 
+    /* Assim como os comentários na classe GeradorNotaFiscal, não existem serviços inválidos
+    de acordo com a especificação.
+    * Caio - revisão 06/03/2024 */
     @Test(expected = IllegalArgumentException.class)
     public void testGeracaoNotaFiscalComServicoInvalido() {
         Fatura fatura = new Fatura("Heitor", "Endereço aux", "SERVICO_INVALIDO", 2000.0);
