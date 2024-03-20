@@ -1,3 +1,5 @@
+package sistema;
+
 public class NotaFiscal {
     private String nomeCliente;
     private double valor;
