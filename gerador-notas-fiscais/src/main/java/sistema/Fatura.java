@@ -1,3 +1,5 @@
+package sistema;
+
 public class Fatura {
     private String nomeCliente;
     private String enderecoCliente;

@@ -1,3 +1,5 @@
+package sistema;
+
 public class NotaFiscalDaoImpl implements NotaFiscalDao {
     @Override
     public void salva(NotaFiscal notaFiscal) {

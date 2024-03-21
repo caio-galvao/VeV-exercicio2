@@ -1,8 +1,9 @@
+package sistema;
+
 import org.junit.Test;
 
 /* Import deveria ser removido, já que não está sendo usado 
-* Caio - revisão 06/03/2024 */ 
-import static javax.management.Query.times;
+* Caio - revisão 06/03/2024 */
 import static org.junit.Assert.*;
 
 public class GeradorNotaFiscalTest {

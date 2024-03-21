@@ -1,3 +1,5 @@
+package sistema;
+
 public class GeradorNotaFiscal {
 
     public static NotaFiscal geraNotaFiscal(Fatura fatura) {
