@@ -24,11 +24,12 @@ public class GerenciadorTarefasTest {
         Boolean status = gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
         assertTrue(status);
         Tarefa tarefa = gerenciadorTarefas.getTarefa(usuario, titulo);
-        assertEquals(tarefa.getUsuario(), usuario);
-        assertEquals(tarefa.getTitulo(), titulo);
-        assertEquals(tarefa.getDescricao(), descricao);
-        assertEquals(tarefa.getDataVencimento(), dataVencimento);
-        assertEquals(tarefa.getPrioridade(), prioridade);
+        assertAll("tarefa",
+        () -> assertEquals(tarefa.getUsuario(), usuario),
+        () -> assertEquals(tarefa.getTitulo(), titulo),
+        () -> assertEquals(tarefa.getDescricao(), descricao),
+        () -> assertEquals(tarefa.getDataVencimento(), dataVencimento),
+        () -> assertEquals(tarefa.getPrioridade(), prioridade));
     }
 
     /* Acredito que o teste de getTarefa deveria ser realizado comparando a tarefa que está sendo retornada
@@ -51,11 +52,12 @@ public class GerenciadorTarefasTest {
         Boolean status2 = gerenciadorTarefas.criarTarefa(usuario2, titulo2, descricao2, dataVencimento2, prioridade2);
         assertTrue(status2);
         Tarefa tarefa2 = gerenciadorTarefas.getTarefa(usuario2, titulo2);
-        assertEquals(tarefa2.getUsuario(), usuario2);
-        assertEquals(tarefa2.getTitulo(), titulo2);
-        assertEquals(tarefa2.getDescricao(), descricao2);
-        assertEquals(tarefa2.getDataVencimento(), dataVencimento2);
-        assertEquals(tarefa2.getPrioridade(), prioridade2);
+        assertAll("tarefa",
+        () -> assertEquals(tarefa2.getUsuario(), usuario2),
+        () -> assertEquals(tarefa2.getTitulo(), titulo2),
+        () -> assertEquals(tarefa2.getDescricao(), descricao2),
+        () -> assertEquals(tarefa2.getDataVencimento(), dataVencimento2),
+        () -> assertEquals(tarefa2.getPrioridade(), prioridade2));
     }
 
     @Test
