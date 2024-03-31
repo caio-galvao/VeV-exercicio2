@@ -1,6 +1,8 @@
 package junit5Tests;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -10,16 +12,21 @@ public class FunctionalTestsParticoesEquivalencia {
     
     GerenciadorTarefas gerenciadorTarefas = new GerenciadorTarefas();
 
-    //testes atualizar título
-    @Test
-    public void testAtualizarTituloDadosValidos() {
+    @BeforeEach
+    public void setup() {
         String usuario = "usuario1";
         String titulo = "titulo1";
         String descricao = "teste";
         String dataVencimento = "20/03/2024";
         String prioridade = "MEDIA";
         gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
+    }
 
+    //testes atualizar título
+    @Test
+    public void testAtualizarTituloDadosValidos() {
+        String usuario = "usuario1";
+        String titulo = "titulo1";
         String novoTitulo = "novo título";
         Boolean status = gerenciadorTarefas.atualizarTituloTarefa(usuario, titulo, novoTitulo);
         assertTrue(status);
@@ -37,13 +44,7 @@ public class FunctionalTestsParticoesEquivalencia {
     @Test
     public void testAtualizarTituloInexistente() {
         String usuario = "usuario1";
-        String titulo = "titulo1";
-        String descricao = "teste";
-        String dataVencimento = "20/03/2024";
-        String prioridade = "MEDIA";
-        gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
-
-        titulo = "titulo0";
+        String titulo = "titulo0";
         String novoTitulo = "novo título";
         Boolean status = gerenciadorTarefas.atualizarTituloTarefa(usuario, titulo, novoTitulo);
         assertFalse(status);
@@ -53,11 +54,6 @@ public class FunctionalTestsParticoesEquivalencia {
     public void testNovoTituloVazio() {
         String usuario = "usuario1";
         String titulo = "titulo1";
-        String descricao = "teste";
-        String dataVencimento = "20/03/2024";
-        String prioridade = "MEDIA";
-        gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
-
         String novoTitulo = "";
         Boolean status = gerenciadorTarefas.atualizarTituloTarefa(usuario, titulo, novoTitulo);
         assertFalse(status);
@@ -66,18 +62,13 @@ public class FunctionalTestsParticoesEquivalencia {
     @Test
     public void testNovoTituloJaExistente() {
         String usuario = "usuario1";
-        String titulo = "titulo1";
-        String descricao = "teste";
-        String dataVencimento = "20/03/2024";
-        String prioridade = "MEDIA";
-        gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
-
         String titulo2 = "titulo2";
         String descricao2 = "teste";
         String dataVencimento2 = "20/03/2024";
         String prioridade2 = "MEDIA";
         gerenciadorTarefas.criarTarefa(usuario, titulo2, descricao2, dataVencimento2, prioridade2);
 
+        String titulo = "titulo1";
         String novoTitulo = "titulo2";
         Boolean status = gerenciadorTarefas.atualizarTituloTarefa(usuario, titulo, novoTitulo);
         assertFalse(status);
@@ -89,11 +80,6 @@ public class FunctionalTestsParticoesEquivalencia {
     public void testNovaDescricaoCorreta(String novaDescricao) {
         String usuario = "usuario1";
         String titulo = "titulo1";
-        String descricao = "teste";
-        String dataVencimento = "20/03/2024";
-        String prioridade = "MEDIA";
-        gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
-
         Boolean status = gerenciadorTarefas.atualizarDescricaoTarefa(usuario, titulo, novaDescricao);
         assertTrue(status);
     }
@@ -102,23 +88,17 @@ public class FunctionalTestsParticoesEquivalencia {
     public void testAtualizarDescricaoUsuarioInexistente() {
         String usuario = "usuario0";
         String titulo = "titulo1";
-        String novaDescriao = "descrição";
-        Boolean status = gerenciadorTarefas.atualizarDescricaoTarefa(usuario, titulo, novaDescriao);
+        String novaDescricao = "descrição";
+        Boolean status = gerenciadorTarefas.atualizarDescricaoTarefa(usuario, titulo, novaDescricao);
         assertFalse(status);
     }
 
     @Test
     public void testAtualizarDescricaoTituloInexistente() {
         String usuario = "usuario1";
-        String titulo = "titulo1";
-        String descricao = "teste";
-        String dataVencimento = "20/03/2024";
-        String prioridade = "MEDIA";
-        gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
-
-        titulo = "titulo0";
-        String novaDescriao = "descrição";
-        Boolean status = gerenciadorTarefas.atualizarDescricaoTarefa(usuario, titulo, novaDescriao);
+        String titulo = "titulo0";
+        String novaDescricao = "descrição";
+        Boolean status = gerenciadorTarefas.atualizarDescricaoTarefa(usuario, titulo, novaDescricao);
         assertFalse(status);
     }
 
@@ -129,11 +109,6 @@ public class FunctionalTestsParticoesEquivalencia {
     public void testNovaPrioridadeCorreta(String novaPrioridade) {
         String usuario = "usuario1";
         String titulo = "titulo1";
-        String descricao = "teste";
-        String dataVencimento = "20/03/2024";
-        String prioridade = "MEDIA";
-        gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
-
         Boolean status = gerenciadorTarefas.atualizarPrioridade(usuario, titulo, novaPrioridade);
         assertTrue(status);
     }
@@ -142,11 +117,6 @@ public class FunctionalTestsParticoesEquivalencia {
     public void testNovaPrioridadeInvalida() {
         String usuario = "usuario1";
         String titulo = "titulo1";
-        String descricao = "teste";
-        String dataVencimento = "20/03/2024";
-        String prioridade = "MEDIA";
-        gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
-
         String novaPrioridade = "MUITO ALTA";
         Boolean status = gerenciadorTarefas.atualizarPrioridade(usuario, titulo, novaPrioridade);
         assertFalse(status);
@@ -164,13 +134,7 @@ public class FunctionalTestsParticoesEquivalencia {
     @Test
     public void testAtualizarPrioridadeTituloInexistente() {
         String usuario = "usuario1";
-        String titulo = "titulo1";
-        String descricao = "teste";
-        String dataVencimento = "20/03/2024";
-        String prioridade = "MEDIA";
-        gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
-
-        titulo = "titulo0";
+        String titulo = "titulo0";
         String novaPrioridade = "MEDIA";
         Boolean status = gerenciadorTarefas.atualizarPrioridade(usuario, titulo, novaPrioridade);
         assertFalse(status);
@@ -181,11 +145,6 @@ public class FunctionalTestsParticoesEquivalencia {
     public void testExcluirDadosValidos() {
         String usuario = "usuario1";
         String titulo = "titulo1";
-        String descricao = "teste";
-        String dataVencimento = "20/03/2024";
-        String prioridade = "MEDIA";
-        gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
-
         Boolean status = gerenciadorTarefas.excluirTarefa(usuario, titulo);
         assertTrue(status);
     }
@@ -201,13 +160,7 @@ public class FunctionalTestsParticoesEquivalencia {
     @Test
     public void testExcluirTituloInexistente() {
         String usuario = "usuario1";
-        String titulo = "titulo1";
-        String descricao = "teste";
-        String dataVencimento = "20/03/2024";
-        String prioridade = "MEDIA";
-        gerenciadorTarefas.criarTarefa(usuario, titulo, descricao, dataVencimento, prioridade);
-
-        titulo = "titulo0";
+        String titulo = "titulo0";
         Boolean status = gerenciadorTarefas.excluirTarefa(usuario, titulo);
         assertFalse(status);
     }
